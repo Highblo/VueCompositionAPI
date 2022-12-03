@@ -2,6 +2,7 @@
 import { ref, computed } from "vue";
 import HomeView from "./views/HomeView.vue";
 import ColorButton from "./components/ColorButton.vue";
+import TodoList from "./components/TodoList.vue";
 
 // const answer = computed(() => {
 //   return 123 + 456;
@@ -39,12 +40,12 @@ const deleteTodo = (i) => {
     <input type="text" v-model="newTodo" />
     <button @click="addTodo">追加</button>
   </form>
-  <ul v-if="todos.length > 0">
-    <li v-for="(todo, i) in todos" :key="todo">
-      {{ todo }}
-      <button @click="deleteTodo(i)">削除</button>
-    </li>
-  </ul>
-  <p v-else>Todoを追加してください</p>
+  <TodoList :todos="todos" @deleteTodo="deleteTodo" />
   <ColorButton bgColor="aquamarine">Button</ColorButton>
 </template>
+
+<style>
+p {
+  color: teal;
+}
+</style>
